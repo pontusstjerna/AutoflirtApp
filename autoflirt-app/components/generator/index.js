@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import generate from 'autoflirt';
+import { generateSE } from 'autoflirt';
 
 import {
     View,
@@ -8,13 +8,15 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
+const version = '2.0';
+
 class Generator extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            line: 'Snopp',
+            line: '',
         };
 
         this.generate = this.generate.bind(this);
@@ -22,19 +24,20 @@ class Generator extends Component {
 
     generate() {
         this.setState({
-            line: generate(),
+            line: generateSE(),
         });
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <Text style={styles.txtHeader}>Raggningsreplikgenerator {version}</Text>
                 <Text style={styles.txtLine}>{this.state.line}</Text>
                 <TouchableOpacity
                     onPress={this.generate}
                     style={styles.btnGenerate}
                 >
-                <Text style={styles.txtGenerate}>Generate!</Text>
+                <Text style={styles.txtGenerate}>Generera!</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -58,13 +61,16 @@ const styles = StyleSheet.create({
         marginBottom: 120,
         borderWidth: 0.5,
         padding: 10,
-        backgroundColor: '#d47af4',
+        backgroundColor: '#eee',
     },
     txtLine: {
         fontSize: 17
     },
     txtGenerate: {
-        fontSize: 25
+        fontSize: 25,
+    },
+    txtTitle: {
+        fontSize: 32,
     }
   });
   
